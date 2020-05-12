@@ -1,0 +1,4 @@
+  Hello   1   4.5
+World 2 3.3
+Chto 2    2
+Delat 3 4.8

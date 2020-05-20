@@ -25,8 +25,13 @@ Student** mass(FILE* input_file, int size){
             strcpy(a[i]->name,istr);
         }
         else{
-            printf("not enough data");
-            return -1;
+            for (int j=0; j<=i; j++){
+                free(a[j]);
+            }
+            free(a);
+            a=NULL;
+            printf("not enough data\n");
+            return a;
         }
         istr = strtok (NULL,sep);
         if (atoi(istr)!=0){
@@ -34,13 +39,23 @@ Student** mass(FILE* input_file, int size){
                 a[i]->group=atoi(istr);
             }
             else{
-                printf("not enough data");
-                return -1;
+                for (int j=0; j<=i; j++){
+                    free(a[j]);
+                }
+                free(a);
+                a=NULL;
+                printf("not enough data\n");
+                return a;
             }
         }
         else{
-            printf("incorrect data");
-            return -1;
+            for (int j=0; j<=i; j++){
+                free(a[j]);
+            }
+            free(a);
+            a=NULL;
+            printf("incorrect data\n");
+            return a;
         }
         istr = strtok (NULL,sep);
         if (atof(istr)!=0){
@@ -49,13 +64,23 @@ Student** mass(FILE* input_file, int size){
                // printf("%lf\n", a[i]->rating);
             }
             else{
-                printf("not enough data");
-                return -1;
+                for (int j=0; j<=i; j++){
+                    free(a[j]);
+                }
+                free(a);
+                a=NULL;
+                printf("not enough data\n");
+                return a;
             }
         }
         else{
-            printf("incorrect data");
-            return -1;
+            for (int j=0; j<=i; j++){
+                free(a[j]);
+            }
+            free(a);
+            a=NULL;
+            printf("incorrect data\n");
+            return a;
         }
         istr = strtok (NULL,sep);
         if (atof(istr)!=0){
@@ -94,8 +119,16 @@ int main(void){
             rewind(students);
             rewind(exp_students);
             arrstudents=mass(students, size);
+            if (arrstudents==NULL){
+                printf("Error\n");
+                return -1;
+            }
             if (size_exp!=0){
                    arrexp_students=mass(exp_students, size_exp);
+                   if (arrexp_students==NULL){
+                        printf("Error\n");
+                        return -1;
+                    }
             }
             /*for (int i=0; i<size; i++){
                 printf("%s ", arrstudents[i]->name);

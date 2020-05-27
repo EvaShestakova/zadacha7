@@ -158,6 +158,21 @@ int main(void){
                     }
                 }
             }
+            else{
+                fclose(students);
+                fclose(exp_students);
+                output_file=fopen("data.txt", "w");
+                for (int i=0; i<size-k; i++){
+                    fprintf(output_file, "%s ", arrstudents[i]->name);
+                    fprintf(output_file, "%d ", arrstudents[i]->group);
+                    fprintf(output_file, "%lf\n", arrstudents[i]->rating);
+                }
+                for (int i=0; i<size-k; i++){
+                    free(arrstudents[i]);
+                }
+                free(arrstudents);
+                return 0;
+            }
             fclose(students);
             fclose(exp_students);
             output_file=fopen("data.txt", "w");
@@ -170,12 +185,10 @@ int main(void){
                 free(arrstudents[i]);
             }
             free(arrstudents);
-            if(size_exp!=0){
-                for (int i=0; i<size_exp; i++){
-                    free(arrexp_students[i]);
-                }
-                free(arrexp_students);
+            for (int i=0; i<size_exp; i++){
+                free(arrexp_students[i]);
             }
+            free(arrexp_students);
             return 0;
         }
 }
